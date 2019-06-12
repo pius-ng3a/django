@@ -1,0 +1,16 @@
+{% extends 'basic_layout.html' %}
+
+{%block content %}
+ 
+	<div style="width=70%; height:70%;">
+		<video width="320" height="240" controls>
+			<source src="{{movie.video.url}}" type="video/mp4">
+			Your browser does not support the video tag.
+		</video> 
+	</div>
+	<div>
+       <p> <span>{{movie.name}}</span> </p>
+       <p> {{movie.movie_type}}</p>
+	</div>
+
+{%endblock%}

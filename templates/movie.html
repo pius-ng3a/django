@@ -1,0 +1,61 @@
+{% extends 'basic_layout.html'%}
+
+{%block content %}
+ <div class="w3-display-container" style="width: 100%;">
+ 	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			 <div>
+			 		<button type="button" class="navbar-toggle"  data-toggle="collapse" data-target="#topNavBar"><span class="icon-bar"></span>
+			 		<span class="icon-bar"></span>
+			 		<span class="icon-bar"></span>
+			 		</button>
+			 </div>
+			 <div class="collapse navbar-collapse">
+			 	<ul class=" nav navbar-nav">
+		  			<li><a href="{% url 'home' %}">Home</a> | </li> 
+					<li>  <a href="{% url 'about' %}">About</a> | </li>
+					<li><a href="movie/<int:movie_id>/change">Edit Movie</li>
+	   
+ 				</ul>
+ 				<button> <a href="add"> Add New Movie </a></button>
+			 </div>
+		</div>
+
+	</nav>    
+
+ 	<table class="w3-table">
+ 	    <tr>
+ 	    	<th>Icon</th>
+ 	    	<th>Name</th>
+ 	    	<th>Type</th>
+ 	    	<th>Client or Studio </th>
+ 	    	<th>Project Manager</th>
+ 	    	<th>Created Date</th>
+ 	    	<th>Modified Date</th>
+ 	    </tr>
+		{% for movie in movies  %}
+		 <tr>
+		 	<td ><a href="/movie/{{movie.id}}/play"><img  src="{{movie.icon.url}}" class="w3-image" style="height:30px; width:30px" ></a></td>
+		 	<td>{{movie.name}}</td>
+		 	<td>{{movie.movie_type}}</td>
+		 	<td>{{movie.studio}}</td>
+		 	{% for person in persons %}
+		 	   {%if person.id == movie.manager_id %}
+		 			<td>{{person.username}}  {{person.last_name}}</td>
+		 	   {%endif%}
+		 	{%endfor %}
+		 	<td>{{movie.created_at}}</td>
+		 	{%if movie.updated_at %}
+		 		<td>{{movie.updated_at}}</td>
+		 	{% else %}
+		 		<td> </td>
+		 	{%endif%}
+
+		 </tr>
+ 
+		{%endfor %}
+   </table>
+ </div>
+
+
+{%endblock%}
