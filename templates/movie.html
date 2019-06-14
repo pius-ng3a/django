@@ -14,8 +14,7 @@
 			 	<ul class=" nav navbar-nav">
 		  			<li><a href="{% url 'home' %}">Home</a> | </li> 
 					<li>  <a href="{% url 'about' %}">About</a> | </li>
-					<li><a href="movie/<int:movie_id>/change">Edit Movie</li>
-	   
+					<li><a href="{{movie.id}}/change">Edit Movie</li>
  				</ul>
  				<button> <a href="add"> Add New Movie </a></button>
 			 </div>
@@ -41,7 +40,7 @@
 		 	<td>{{movie.studio}}</td>
 		 	{% for person in persons %}
 		 	   {%if person.id == movie.manager_id %}
-		 			<td>{{person.username}}  {{person.last_name}}</td>
+		 			<td>{{person.manager_name}} </td>
 		 	   {%endif%}
 		 	{%endfor %}
 		 	<td>{{movie.created_at}}</td>
@@ -51,6 +50,7 @@
 		 		<td> </td>
 		 	{%endif%}
 
+		 	<td><button><a href="{{movie.id}}/edit">Edit Movie</a></button></td>
 		 </tr>
  
 		{%endfor %}

@@ -11,7 +11,7 @@ class MovieView(TemplateView):
 	def get_context_data(self, *args, **kwargs):
 		context = super(MovieView, self).get_context_data(**kwargs)
 		movies = Movie.objects.all()
-		persons = User.objects.all()
+		persons = Manager.objects.all()
 		context['movies'] = movies
 		context['persons']=persons
 		return context
@@ -22,7 +22,7 @@ class PlayMovie(TemplateView):
 
 def movie_play(request,movieid):
 	movie =Movie.objects.get(pk = movieid)
-	manager = User.objects.get(pk = movie.manager_id)
+	manager = Manager.objects.get(pk = movie.manager_id)
 	return render(request, 'play.html',{"movie":movie,'manager':manager})
 		
 def save_created_movie(request):
@@ -35,9 +35,23 @@ def save_created_movie(request):
 			form = MovieForm()
 			return render(request,'edit_movie.html',{'form':form})
 def create_new_movie(request):
-	form = MovieForm
+	form = MovieForm(request.POST,request.FILES)
 	return render(request,'addmovie.html',{'form':form})
 
 class MovieFormView(CreateView):
 	form_class = AddMovieForm
 	template_name = 'addmovie.html'
+	#success_url =''
+def delete(request,movieid):
+	Movie.objects.get(pk=movieid).delete()
+	return redirect('movie')
+def edit_movie(request,movieid):
+	instance = Movie.objects.get(pk=movieid)
+	if request.method == "POST":
+		form =MovieForm(request.POST,instance=instance)
+		if form.is_valid():
+			editedMovie = form.save()
+			return redirect("movie")
+	else:
+		form = MovieForm(instance=instance)
+		return render(request,'edit_movie.html',{'form':form})

@@ -1,16 +1,32 @@
 {% extends 'basic_layout.html' %}
 
 {%block content %}
- 
-	<div style="width=70%; height:70%;">
-		<video width="320" height="240" controls>
-			<source src="{{movie.video.url}}" type="video/mp4">
-			Your browser does not support the video tag.
-		</video> 
-	</div>
-	<div>
-       <p> <span>{{movie.name}}</span> </p>
-       <p> {{movie.movie_type}}</p>
-	</div>
+<p><button><a href="delete">Delete Movie</a></button> 
+ <button><a href="edit"> Edit Movie</a></button>
+ <button><a href="{% url 'movie' %}"> Home</a></button>
+
+</p>
+<table>
+		<tr>
+		<td>  <div>
+		  		<div style="width=50%; height:50%">
+		  			<p><img src="{{movie.icon.url}}" alt="movie image here!" style="width:50%;height:50%"> </p>
+		  			<p style="float:left"> Name: {{movie.name}} </p> <br/>
+		  			<p style="float:left; padding-left:-10%"> Studio: {{movie.studio}}</p><br/>
+		  		</div>
+		</td><td>
+				<div style="width=100%; height:100%; float:right;">
+						<video width="90%" height="240" controls>
+							<source src="{{movie.video.url}}" type="video/mp4">
+							Your browser does not support the video tag.
+						</video> 
+					</div>
+					<div>
+				</div>
+		  </div>
+		</td>  
+	</tr>
+ </table> 
+	
 
 {%endblock%}

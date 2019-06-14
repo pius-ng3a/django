@@ -1,5 +1,6 @@
 from django.db import models
 from time import time
+from django.urls import reverse
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 # Create your models here.
@@ -27,6 +28,8 @@ class Movie(models.Model):
 	likes = models.IntegerField(default=0)
 	def __unicode__(self):
 		return self.name
+	def get_absolute_url(self):
+		return reverse('movie')
 	# def __init__(self, arg):
 	# 	super(Movie, self).__init__()
 	# 	self.arg = arg

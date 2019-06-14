@@ -1,11 +1,22 @@
 {%extends 'basic_layout.html'%}
 
 {%block content%}
- <h1> New Movie</h1>
+ <h1> Edit Movie</h1>
  <form method = "post" enctype="multipart/form-data">
  	{% csrf_token %}
- 	 {{from.as_p}}
+ 	 {{form.as_p}}
      <button type="submit" class="w3-btn"> Submit </button>
  </form>
 
-{%blockend%}
+<script>
+  $(function() {
+    $( ".datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "1900:2012",
+      // You can put more options here.
+
+    });
+  });
+  </script>
+{%endblock%}
