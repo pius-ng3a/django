@@ -25,7 +25,7 @@ SECRET_KEY = 'ycy+sq(yv6=(aeaag))xt)y7ax1r*+q90*y^l03x959&(7&6js'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'cloudcom1',
     'movie',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -131,3 +132,4 @@ STATICFILES_DIRS = [
 MEDIA_URL ="/media/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

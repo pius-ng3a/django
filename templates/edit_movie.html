@@ -4,19 +4,8 @@
  <h1> Edit Movie</h1>
  <form method = "post" enctype="multipart/form-data">
  	{% csrf_token %}
- 	 {{form.as_p}}
+ 	 {{form.as_p|crispy}}
      <button type="submit" class="w3-btn"> Submit </button>
  </form>
 
-<script>
-  $(function() {
-    $( ".datepicker" ).datepicker({
-      changeMonth: true,
-      changeYear: true,
-      yearRange: "1900:2012",
-      // You can put more options here.
-
-    });
-  });
-  </script>
 {%endblock%}

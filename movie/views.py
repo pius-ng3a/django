@@ -48,9 +48,9 @@ def delete(request,movieid):
 def edit_movie(request,movieid):
 	instance = Movie.objects.get(pk=movieid)
 	if request.method == "POST":
-		form =MovieForm(request.POST,instance=instance)
+		form =MovieForm(request.POST,request.FILES, instance=instance)
 		if form.is_valid():
-			editedMovie = form.save()
+			form.save()
 			return redirect("movie")
 	else:
 		form = MovieForm(instance=instance)
