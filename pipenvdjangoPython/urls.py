@@ -23,7 +23,8 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("cloudcom1/",include('cloudcom1.urls')),
-    path("",include('cloudcom1.urls')),
+    path("",include('movie.urls')),
+    #path("",include('cloudcom1.urls')),
     path('movie/',include('movie.urls')),
 ]
 urlpatterns += staticfiles_urlpatterns()
