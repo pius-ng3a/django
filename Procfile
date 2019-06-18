@@ -1,0 +1,1 @@
+web: gunicorn pipenvdjangoPython.wsgi --log-file -                                                                                                 
